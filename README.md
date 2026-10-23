@@ -1,10 +1,10 @@
 # Lead Tracker
 
 <!--
-  PUBLISHER: after you put this folder in a PUBLIC GitHub repository, replace YOUR-GITHUB-NAME/lead-tracker
+  PUBLISHER: after you put this folder in a PUBLIC GitHub repository, replace droisyscloud/LeadTracker
   below with your repository's name (for example droisys/lead-tracker). The button only works for public repositories.
 -->
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/YOUR-GITHUB-NAME/lead-tracker)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/droisyscloud/LeadTracker)
 
 **New here? Start with [DEPLOY.md](DEPLOY.md).** It walks you through putting Lead Tracker online for your company, step by step, in about 45 minutes. No programming needed. The button above starts Part 1 of that guide in one click.
 

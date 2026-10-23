@@ -444,9 +444,61 @@ People who already have a password can keep using it. A person signing in with G
 
 Needs Google or Microsoft sign-in set up first (above, including its last step). Then each person opens **Account** → **Mailbox and calendar** and clicks **Connect Google Workspace** or **Connect Microsoft 365**, then approves the access Google or Microsoft asks for. After that, emails with their leads are logged automatically, they can send from their own address, and booking pages show their real free time.
 
-**AI features**
+**AI features (writing, summaries, scanning and voice)**
 
-Email drafting, summaries, business card and badge scanning, and meeting notes. Add `ANTHROPIC_API_KEY` (from [console.anthropic.com](https://console.anthropic.com)) or `OPENAI_API_KEY` (from [platform.openai.com](https://platform.openai.com)). Voice notes and meeting recordings need the OpenAI key. The AI provider bills you for use.
+*What you get:* Lead Tracker can draft follow-up emails, rewrite text, summarise a lead or the whole pipeline, suggest the next best action, read business cards and event badges from a photo, prepare meeting briefs, and draft quotes. With an OpenAI key it can also turn voice notes and meeting recordings into text.
+
+*What you need:* an account with an AI provider and a "key", a long secret code that lets Lead Tracker use your account. The provider bills you for what you use, separately from Render. You'll set a monthly limit so the cost never surprises you.
+
+*Step 1: Choose a provider*
+
+| If you want | Use | Setting to add in Render |
+| --- | --- | --- |
+| Writing, summaries and scanning only | Anthropic (Claude) **or** OpenAI; either works | `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` |
+| Voice notes and meeting recordings too | OpenAI (only OpenAI does voice) | `OPENAI_API_KEY` |
+| Everything, with Claude for writing | Both | Both settings |
+
+If you add both keys, Lead Tracker uses Anthropic for writing and OpenAI for voice. To use OpenAI for writing as well, also add the setting `AI_PROVIDER` with the value `openai`.
+
+*Step 2 (Anthropic): Get your key*
+
+1. Go to [console.anthropic.com](https://console.anthropic.com) and click **Sign up** (or **Log in**). You can use your work email or Google account. Confirm your email if asked.
+2. If it asks for an organization name, type your company name.
+3. Add money to the account: open **Settings** → **Billing** (in the left menu), add a payment card, and buy credits. Anthropic works on prepaid credits; $10 to $20 is plenty to start. You can switch on automatic top-ups later.
+4. Set a limit: open **Settings** → **Limits** and set a monthly spend limit you're comfortable with.
+5. Create the key: open **API Keys** (in the left menu or under **Settings**) → **Create Key**. Name it `Lead Tracker` and click **Create** (or **Add**).
+6. The key appears once, starting with `sk-ant-`. Click **Copy** and paste it into your note for a moment. You can't see it again after you close the box; if you lose it, just create a new one.
+
+*Step 2 (OpenAI): Get your key*
+
+1. Go to [platform.openai.com](https://platform.openai.com) and click **Sign up** (or **Log in**). Confirm your email and phone number if asked.
+2. Add money to the account: click the **gear icon** (Settings) → **Billing** → **Add payment details**, add a card and buy credits. $10 to $20 is plenty to start.
+3. Set a limit: under **Settings** → **Limits**, set a monthly budget and an email alert.
+4. Create the key: in the left menu click **API keys** → **Create new secret key**. Name it `Lead Tracker`, leave the other options as they are, and click **Create secret key**.
+5. The key appears once, starting with `sk-`. Click **Copy** and paste it into your note for a moment. If you lose it, create a new one.
+
+*Step 3: Add the key in Render*
+
+Follow "How to add a setting in Render" at the start of this part:
+
+- Anthropic: **Key** `ANTHROPIC_API_KEY`, **Value** your `sk-ant-…` key.
+- OpenAI: **Key** `OPENAI_API_KEY`, **Value** your `sk-…` key.
+
+Paste the key exactly, with no spaces before or after it. Click **Save, rebuild, and deploy** and wait until **lead-tracker** shows **Live** again.
+
+*Step 4: Check it works*
+
+1. In Lead Tracker, open **Settings** and find the **Integrations** list.
+2. The **AI** row should now say **On**, followed by **Anthropic Claude** or **OpenAI**.
+3. Open **Home**. The **AI summary** box at the top no longer shows the setup message. (On a brand-new app it may say there is not enough activity to summarise yet; that also means AI is working.)
+
+Once it works, delete the key from your note. It now lives only in Render.
+
+*Keeping the key safe*
+
+- Treat the key like a password. Never email it or put it anywhere except Render.
+- If you think a key has leaked, or the person who created it leaves: in the provider's **API Keys** page, delete (revoke) the old key, create a new one, and replace the value in Render (Environment → **Edit** → paste → **Save, rebuild, and deploy**).
+- If AI suddenly stops working, the account has usually run out of credits or hit its monthly limit. Top up or raise the limit in the provider's **Billing** or **Limits** page; nothing needs to change in Render.
 
 **Your own web address** (for example `leads.yourcompany.com`)
 

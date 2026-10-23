@@ -1,0 +1,28 @@
+# Runs Lead Tracker with its own PostgreSQL database on any server with Docker.
+#   1. Copy .env.example to .env and fill in the REQUIRED lines.
+#   2. docker compose up -d --build
+#   3. Open http://<your server>:3000
+# For a live site, put HTTPS in front (Caddy, Nginx, or your cloud's load balancer). See DEPLOY.md.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: leadtracker
+      POSTGRES_USER: leadtracker
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U leadtracker"], interval: 5s, retries: 10 }
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on: { db: { condition: service_healthy } }
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://leadtracker:${POSTGRES_PASSWORD:-change-me}@db:5432/leadtracker
+      UPLOAD_DIR: /app/data/uploads
+    ports: ["3000:3000"]
+    volumes: [uploads:/app/data/uploads]
+volumes:
+  pgdata:
+  uploads:

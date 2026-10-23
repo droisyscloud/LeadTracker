@@ -1,0 +1,58 @@
+# One-click deployment on Render (render.com). Creates the app, its PostgreSQL database and a disk for uploads.
+# Step-by-step guide: DEPLOY.md
+databases:
+  - name: lead-tracker-db
+    databaseName: lead_tracker
+    user: lead_tracker
+    plan: basic-256mb
+
+services:
+  - type: web
+    name: lead-tracker
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --include=dev && npm run build
+    # sets up / updates the database on every start (safe to repeat), then starts the app
+    startCommand: npm run db:migrate && npm run db:seed && npm start
+    healthCheckPath: /api/health
+    disk:
+      name: uploads
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: lead-tracker-db
+          property: connectionString
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: TOKEN_ENCRYPTION_KEY
+        generateValue: true
+      - key: CRON_SECRET
+        generateValue: true
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: SESSION_MAX_AGE_HOURS
+        value: "12"
+      - key: AUTO_JOIN_ROLE
+        value: viewer
+      - key: EMAIL_OPEN_TRACKING
+        value: "true"
+      - key: DIGEST_HOUR
+        value: "7"
+      # Sign in with email and password (no Google or Microsoft setup needed). Set to "false" to use only Google or Microsoft.
+      - key: AUTH_EMAIL_PASSWORD
+        value: "true"
+      # ── You fill these in when Render asks (see DEPLOY.md) ──
+      - key: BOOTSTRAP_ADMIN_EMAILS     # your work email: you become the first admin
+        sync: false
+      - key: ADMIN_INITIAL_PASSWORD     # the password you'll sign in with the first time (at least 10 characters)
+        sync: false
+      - key: COMPANY_NAME               # your company's name (can be changed later in Settings)
+        sync: false
+      - key: TEAM_TIMEZONE              # e.g. America/New_York, Europe/London, Asia/Kolkata
+        sync: false
+      # Optional extras (Google or Microsoft sign-in, email sending, AI): add them later in Render → lead-tracker → Environment.
+      # DEPLOY.md lists each one.

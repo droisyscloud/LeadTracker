@@ -6,6 +6,8 @@ This guide puts Lead Tracker online for your company in about 45 minutes. You do
 
 ## Before you start
 
+**Start here:** Lead Tracker is published by Droisys at [github.com/droisyscloud/LeadTracker](https://github.com/droisyscloud/LeadTracker). Everything this guide asks you to set up starts from that page.
+
 Lead Tracker is a website your team signs in to, for following up leads together: contacts, companies, follow-ups, tasks, deals, quotes, email sequences, events, reports and team dashboards. You'll get your own private copy. Your data is stored only in your copy, and only people you invite can sign in.
 
 **What you'll end up with**
@@ -19,7 +21,7 @@ Lead Tracker is a website your team signs in to, for following up leads together
 | Word | What it means in plain English |
 | --- | --- |
 | GitHub | A free website that stores a copy of the app's files online. Think of it as a shared folder in the cloud that Render can read from. |
-| Repository (or "repo") | GitHub's name for one of those folders. Your Lead Tracker files live in a repository called `lead-tracker`. |
+| Repository (or "repo") | GitHub's name for one of those folders. Lead Tracker's files live in a repository called `LeadTracker`. |
 | GitHub Desktop | A free program for your computer that uploads a folder to GitHub with a few clicks. You only need it if you received a zip file. |
 | Render | A hosting company. It runs the Lead Tracker website for you around the clock, stores its data, and keeps it secure. You pay Render monthly. |
 | Blueprint | Render's word for a ready-made setup recipe. Lead Tracker includes one (the file `render.yaml`), so Render can create everything in one go. |
@@ -38,7 +40,7 @@ Lead Tracker is a website your team signs in to, for following up leads together
 
 | What | Why you need it | Where to get it |
 | --- | --- | --- |
-| The Lead Tracker files | The app itself | A link or a zip file from your supplier |
+| The Lead Tracker files | The app itself | [github.com/droisyscloud/LeadTracker](https://github.com/droisyscloud/LeadTracker) |
 | A computer with a web browser | You'll do everything in a browser | Chrome, Edge, Safari or Firefox |
 | An email address you can open now | To create your GitHub and Render accounts; both send a confirmation email | Your work email is best |
 | A payment card | Render needs it before it creates anything | |
@@ -81,23 +83,23 @@ Render doesn't take files directly from your computer. It reads them from GitHub
 
 **Step 1.2: Copy the files into your account**
 
-How you do this depends on what your supplier gave you. Do only **one** of the three options below.
+Lead Tracker is published at [github.com/droisyscloud/LeadTracker](https://github.com/droisyscloud/LeadTracker). Choose **one** of the three options below. Most companies should use Option A.
 
-**Option A: You got a web page with a purple "Deploy to Render" button**
+**Option A (recommended): use the Deploy to Render button**
 
 1. Make sure you're signed in to GitHub (Step 1.1).
-2. Open the page you were given and click **Deploy to Render**.
+2. Open [github.com/droisyscloud/LeadTracker](https://github.com/droisyscloud/LeadTracker), scroll down past the list of files to the description, and click the purple **Deploy to Render** button.
 3. Render opens in your browser. Render makes the copy for you, so skip the rest of Part 1 and go to Part 2, Step 2.1 (create your Render account), then continue from Step 2.2, item 4.
 
-**Option B: You got a link to a GitHub page**
+**Option B: make your own copy with Fork (if you want to change the app, or get new versions with one click)**
 
 1. Make sure you're signed in to GitHub (Step 1.1).
-2. Open the link. You'll see a page with a list of files and folders (such as `public`, `src`, `README.md`), and some text about Lead Tracker underneath.
+2. Open [github.com/droisyscloud/LeadTracker](https://github.com/droisyscloud/LeadTracker). You'll see a page with a list of files and folders (such as `public`, `src`, `README.md`), and some text about Lead Tracker underneath.
 3. Near the top right of that page, click **Fork**. ("Fork" means "make my own copy".)
-4. A page titled **Create a new fork** opens. Leave the **Repository name** as `lead-tracker`. Click the green **Create fork** button at the bottom.
-5. After a few seconds you see the same list of files, but the top left now shows your username, like `acme-ltd / lead-tracker`. That's your copy. Go to the check at the end of this part.
+4. A page titled **Create a new fork** opens. Leave the **Repository name** as `LeadTracker`. Click the green **Create fork** button at the bottom.
+5. After a few seconds you see the same list of files, but the top left now shows your username, like `acme-ltd / LeadTracker`. That's your copy. Go to the check at the end of this part.
 
-**Option C: You got a zip file**
+**Option C: only if Droisys sent you a zip file instead of the link**
 
 The GitHub website can't upload this many files at once, so you'll use GitHub Desktop, a free program, to upload the folder.
 
@@ -128,7 +130,7 @@ The GitHub website can't upload this many files at once, so you'll use GitHub De
 **Check before you move on**
 
 1. In your browser, go to [github.com](https://github.com) and click your profile picture (top right) → **Repositories** (or **Your repositories**).
-2. You should see `lead-tracker` in the list. Click it.
+2. You should see `LeadTracker` (or `lead-tracker`, if you uploaded a zip) in the list. Click it.
 3. You should see the list of files, including `README.md`, `DEPLOY.md` and `render.yaml`.
 
 If `render.yaml` isn't in the list (you see just one folder called `lead-tracker` instead), you uploaded the outer folder by mistake. In GitHub Desktop choose **Repository** → **Remove**, then repeat from item 9 and pick the inner folder.
@@ -148,11 +150,11 @@ In this part Render builds and starts your Lead Tracker website. It reads the se
 **Step 2.2: Start the setup (the "Blueprint")**
 
 1. On the Render Dashboard, click **New** (top right) and choose **Blueprint** from the list.
-2. Render shows a page to connect a repository. If you don't see `lead-tracker` listed:
+2. Render shows a page to connect a repository. If you don't see your `LeadTracker` copy listed:
     - Click **Connect GitHub** (or **Configure account** / **Configure GitHub App**). A GitHub page opens.
-    - Choose your account, then **Only select repositories**, pick `lead-tracker` from the dropdown, and click **Install** (or **Save**).
-    - You're sent back to Render, and `lead-tracker` now appears in the list.
-3. Next to `lead-tracker`, click **Connect**.
+    - Choose your account, then **Only select repositories**, pick `LeadTracker` from the dropdown, and click **Install** (or **Save**).
+    - You're sent back to Render, and `LeadTracker` now appears in the list.
+3. Next to `LeadTracker`, click **Connect**.
 4. Render shows **Blueprint Name**. Type `Lead Tracker`. Leave **Branch** as it is (`main`).
 5. Render reads the recipe and lists what it will create. You should see:
     - a **Web Service** called `lead-tracker` (the website),
@@ -474,7 +476,7 @@ When your supplier gives you a new version, installing it takes about 10 minutes
 
 *If you made your copy with a GitHub link (Part 1, Option B):*
 
-1. Go to [github.com](https://github.com) and open your `lead-tracker` repository.
+1. Go to [github.com](https://github.com) and open your `LeadTracker` repository.
 2. Near the top, GitHub says something like *"This branch is 3 commits behind"*. Click **Sync fork**, then **Update branch**.
 3. Done. Render notices the change and installs it (see "What happens next" below).
 
@@ -548,7 +550,7 @@ Never send passwords, secret keys or your full Render settings. We'll never ask 
 
 Tick each item as you go. The first ten get you live; the rest are optional.
 
-- [ ] GitHub account created, and `lead-tracker` is in your repositories (Part 1)
+- [ ] Option A: **Deploy to Render** clicked on github.com/droisyscloud/LeadTracker. Or, for Options B and C: your copy is in your GitHub repositories (Part 1)
 - [ ] Render account created and payment card added (Part 2)
 - [ ] Blueprint created with `BOOTSTRAP_ADMIN_EMAILS`, `ADMIN_INITIAL_PASSWORD`, `COMPANY_NAME` and `TEAM_TIMEZONE` (Part 2)
 - [ ] **lead-tracker** shows **Live**, and its `.onrender.com` address is saved (Part 2)
